@@ -1,0 +1,48 @@
+//**********************************************************************
+// Script Name          : #SCRIPTNAME#.cs（必填）
+// Author Name          : 作者名（必填）
+// Create Time          : 创建时间，格式为 YY/MM/DD（必填）
+// Last Modified Time   : 最后一次修改时间，格式为 YY/MM/DD（必填）
+// Description          : 文件描述（可选）
+//**********************************************************************
+
+using UnityEngine;
+
+namespace TeaProject
+{
+    /// <summary>
+    /// 请修改类描述。
+    /// </summary>
+    public class #SCRIPTNAME# : MonoBehaviour
+    {
+
+    #region Public or protected fields and properties
+        
+    #endregion
+
+    #region Private fields and properties
+
+    #endregion
+
+    #region Unity Callback
+        private void Start()
+        {
+            #NOTRIM#
+        }
+
+        private void Update()
+        {
+            #NOTRIM#
+        }
+    #endregion
+
+    #region Public or protected method
+            
+    #endregion
+
+    #region Private method
+        
+    #endregion
+
+    }
+}
