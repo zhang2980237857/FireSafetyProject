@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 namespace UnityEngine.EventSystems
@@ -220,6 +221,7 @@ namespace UnityEngine.EventSystems
                     return rhs.module.renderOrderPriority.CompareTo(lhs.module.renderOrderPriority);
             }
 
+            // Renderer sorting
             if (lhs.sortingLayer != rhs.sortingLayer)
             {
                 // Uses the layer value to properly compare the relative order of the layers.
@@ -237,6 +239,17 @@ namespace UnityEngine.EventSystems
 
             if (lhs.distance != rhs.distance)
                 return lhs.distance.CompareTo(rhs.distance);
+
+            #if PACKAGE_PHYSICS2D
+			// Sorting group
+            if (lhs.sortingGroupID != SortingGroup.invalidSortingGroupID && rhs.sortingGroupID != SortingGroup.invalidSortingGroupID)
+            {
+                if (lhs.sortingGroupID != rhs.sortingGroupID)
+                    return lhs.sortingGroupID.CompareTo(rhs.sortingGroupID);
+                if (lhs.sortingGroupOrder != rhs.sortingGroupOrder)
+                    return rhs.sortingGroupOrder.CompareTo(lhs.sortingGroupOrder);
+            }
+            #endif
 
             return lhs.index.CompareTo(rhs.index);
         }

@@ -124,7 +124,12 @@ namespace UnityEditor.UI
         /// </summary>
         protected void RaycastControlsGUI()
         {
+            EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(m_RaycastTarget);
+            if (EditorGUI.EndChangeCheck() && target is Graphic graphic)
+            {
+                graphic.SetRaycastDirty();
+            }
 
             m_ShowPadding = EditorGUILayout.Foldout(m_ShowPadding, m_PaddingContent);
 
