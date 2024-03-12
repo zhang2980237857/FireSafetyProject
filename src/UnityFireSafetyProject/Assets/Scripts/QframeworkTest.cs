@@ -7,7 +7,7 @@ public class QframeworkTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LogKit.I("打印一些信息...Qframework安装成功辅导费 ");
+        LogKit.I("打印一些信息...Qframework安装成功! ");
     }
 
     // Update is called once per frame
