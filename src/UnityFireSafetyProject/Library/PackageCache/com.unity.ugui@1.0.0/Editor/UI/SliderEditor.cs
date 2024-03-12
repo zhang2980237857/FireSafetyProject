@@ -50,8 +50,6 @@ namespace UnityEditor.UI
                 EditorGUILayout.PropertyField(m_Direction);
                 if (EditorGUI.EndChangeCheck())
                 {
-                    Undo.RecordObjects(serializedObject.targetObjects, "Change Slider Direction");
-
                     Slider.Direction direction = (Slider.Direction)m_Direction.enumValueIndex;
                     foreach (var obj in serializedObject.targetObjects)
                     {
@@ -60,26 +58,19 @@ namespace UnityEditor.UI
                     }
                 }
 
+
                 EditorGUI.BeginChangeCheck();
                 float newMin = EditorGUILayout.FloatField("Min Value", m_MinValue.floatValue);
-                if(EditorGUI.EndChangeCheck())
+                if (EditorGUI.EndChangeCheck() && newMin <= m_MaxValue.floatValue)
                 {
-                    if (m_WholeNumbers.boolValue ? Mathf.Round(newMin) < m_MaxValue.floatValue : newMin < m_MaxValue.floatValue) {
-                        m_MinValue.floatValue = newMin;
-                        if (m_Value.floatValue < newMin)
-                            m_Value.floatValue = newMin;
-                    }
+                    m_MinValue.floatValue = newMin;
                 }
 
                 EditorGUI.BeginChangeCheck();
                 float newMax = EditorGUILayout.FloatField("Max Value", m_MaxValue.floatValue);
-                if (EditorGUI.EndChangeCheck())
+                if (EditorGUI.EndChangeCheck() && newMax >= m_MinValue.floatValue)
                 {
-                    if (m_WholeNumbers.boolValue ? Mathf.Round(newMax) > m_MinValue.floatValue : newMax > m_MinValue.floatValue) {
-                        m_MaxValue.floatValue = newMax;
-                        if (m_Value.floatValue > newMax)
-                            m_Value.floatValue = newMax;
-                    }
+                    m_MaxValue.floatValue = newMax;
                 }
 
                 EditorGUILayout.PropertyField(m_WholeNumbers);
