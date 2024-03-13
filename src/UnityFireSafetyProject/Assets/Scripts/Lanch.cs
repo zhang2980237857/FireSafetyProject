@@ -22,7 +22,11 @@ public class Lanch : MonoBehaviour
     private void InitGameLogic()
     {
         //此处撰写初始化游戏主要逻辑
-        LogKit.I("....游戏启动成功!!!");
+
+        //先将游戏逻辑脚本挂载到启动节点上
+        this.gameObject.AddComponent<GameApp>();
+        //调用其中的启动代码
+        GameApp.Instance.InitGame();
     }
 
     private void InitFramework()
