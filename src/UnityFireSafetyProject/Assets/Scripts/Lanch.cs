@@ -1,7 +1,4 @@
 using QFramework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Lanch : MonoBehaviour
@@ -31,11 +28,13 @@ public class Lanch : MonoBehaviour
 
     private void InitFramework()
     {
-       //此处撰写初始化游戏框架逻辑
+        //此处撰写初始化游戏框架逻辑
+        ResKit.Init();  //初始化资源管理
+        
     }
 
     private void InitHotUpdate()
     {
-       //这里面实现游戏更新逻辑
+        //这里面实现游戏更新逻辑
     }
 }
