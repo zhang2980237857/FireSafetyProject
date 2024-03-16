@@ -19,6 +19,7 @@ namespace QFramework.UnityFireSafetyProject
 		{
 			mData = uiData as UILoadingData ?? new UILoadingData();
             mData.loadingNum = 0;
+		
         }
 		
 		protected override void OnOpen(IUIData uiData = null)
@@ -48,7 +49,7 @@ namespace QFramework.UnityFireSafetyProject
 				{
 					timer = 0;
 					isLoading = false;
-					Debug.Log("加载页面完成,正在进入主界面...");
+					
 				}
 			}
         }
