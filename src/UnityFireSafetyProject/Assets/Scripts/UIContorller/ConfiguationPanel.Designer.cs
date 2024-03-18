@@ -5,7 +5,7 @@ using QFramework;
 
 namespace QFramework.UnityFireSafetyProject
 {
-	// Generate Id:800d2191-7ef0-4eab-b8c6-fc8453ee750a
+	// Generate Id:386f3cbc-de46-429a-b75f-23b86edf12ff
 	public partial class ConfiguationPanel
 	{
 		public const string Name = "ConfiguationPanel";
@@ -22,6 +22,16 @@ namespace QFramework.UnityFireSafetyProject
 		public UnityEngine.UI.Slider BkVolume;
 		[SerializeField]
 		public UnityEngine.UI.Slider SdVolume;
+		[SerializeField]
+		public UnityEngine.UI.Button Setup1;
+		[SerializeField]
+		public UnityEngine.UI.Button Setup2;
+		[SerializeField]
+		public UnityEngine.UI.Button Map;
+		[SerializeField]
+		public UnityEngine.UI.Text Identify;
+		[SerializeField]
+		public UnityEngine.UI.Image Map1;
 		
 		private ConfiguationPanelData mPrivateData = null;
 		
@@ -33,6 +43,11 @@ namespace QFramework.UnityFireSafetyProject
 			Sound = null;
 			BkVolume = null;
 			SdVolume = null;
+			Setup1 = null;
+			Setup2 = null;
+			Map = null;
+			Identify = null;
+			Map1 = null;
 			
 			mData = null;
 		}

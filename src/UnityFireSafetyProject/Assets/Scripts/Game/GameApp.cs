@@ -18,6 +18,8 @@ public class GameApp : MonoSingleton<GameApp>
 
     private void EnterMainScene()
     {
+        //进行资源预加载
+        ResMgrPre.Instance.AddRes();
         //实例化主场景,实例化我们的有些UI界面
         UIKit.OpenPanel<UILoading>();
         UILoading.isLoading.RegisterWithInitValue((a) => {
@@ -25,12 +27,12 @@ public class GameApp : MonoSingleton<GameApp>
             {
                 Debug.Log("a的值："+a);
                 //加载场景
+                //进行场景的实例化
                 mResLoader.LoadSync<GameObject>("Showroom").Instantiate();
-
             }
         }).UnRegisterWhenGameObjectDestroyed(this.gameObject);
     }
-    protected override  void   OnDestroy()
+    protected override void OnDestroy()
     {
         //回收进度条
         mResLoader.Recycle2Cache();
