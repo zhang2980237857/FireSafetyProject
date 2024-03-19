@@ -11,10 +11,11 @@ namespace QFramework.UnityFireSafetyProject
 	public class UILoadingData : UIPanelData
 	{
 		public int loadingNum;
-	}
-	public partial class UILoading : UIPanel
+        
+    }
+    public partial class UILoading : UIPanel
 	{
-		private float timer;
+        private float timer;
         public static BindableProperty<bool> isLoading = new BindableProperty<bool>(true);
         //bool isLoading = true;
         public ResLoader mResLoader2 = ResLoader.Allocate();
@@ -34,9 +35,9 @@ namespace QFramework.UnityFireSafetyProject
 			
 		}
 
-	protected override void OnHide()
-		{
-		}
+		protected override void OnHide()
+			{
+			}
 		
 		protected override void OnClose()
 		{
@@ -55,10 +56,11 @@ namespace QFramework.UnityFireSafetyProject
 					this.CloseSelf();
 				}
 			}
+
 			if(Input.GetKeyDown(KeyCode.Escape))
 			{
-                mResLoader2.LoadSync<GameObject>("ConfiguationPanel").Instantiate();
-            }
+				mResLoader2.LoadSync<GameObject>("ConfiguationPanel").Instantiate();
+			}
         }
     }
 }
