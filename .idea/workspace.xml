@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d90bb5e-bbdd-4b88-a3d7-4dc1df9e9818" name="变更" comment="" />
+    <list default="true" id="7d90bb5e-bbdd-4b88-a3d7-4dc1df9e9818" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/src/UnityFireSafetyProject/Assets/Scripts/UIContorller/ConfiguationPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/UnityFireSafetyProject/Assets/Scripts/UIContorller/ConfiguationPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UnityFireSafetyProject/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/UnityFireSafetyProject/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +22,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

@@ -6,7 +6,7 @@ using UnityEngine;
 public class MouseContoller : MonoBehaviour
 {
     private Transform playerTransform; //先获取玩家位置
-    private float mouseSensivity = 400f; //鼠标灵敏度
+    private float mouseSensivity = 300f; //鼠标灵敏度
     private float yRotation = 0;    //y轴旋转
     private float height = 1.8f;        //玩家高度
     public static bool isLocked;   //是否锁定还是放开鼠标

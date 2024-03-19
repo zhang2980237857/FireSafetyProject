@@ -9,11 +9,15 @@ namespace QFramework.UnityFireSafetyProject
         Vector3 moveAmount;             //ÒÆ¶¯¾àÀë
         Animator anim;		//½ÇÉ«¶¯»­¿ØÖÆÆ÷
         private CharacterController characterController;
+        public static BindableProperty<int> timeSet = new BindableProperty<int>(1);
         void Start()
         {
             //anim = GetComponent<Animator>();
             characterController = this.GetComponent<CharacterController>();
-
+            timeSet.RegisterWithInitValue((timeSet) =>
+            {
+                Time.timeScale = timeSet;
+            }).UnRegisterWhenGameObjectDestroyed(this);
         }
 
         void FixedUpdate()
