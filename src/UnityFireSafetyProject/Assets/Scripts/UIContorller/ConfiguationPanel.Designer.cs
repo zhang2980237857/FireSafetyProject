@@ -5,7 +5,7 @@ using QFramework;
 
 namespace QFramework.UnityFireSafetyProject
 {
-	// Generate Id:800d2191-7ef0-4eab-b8c6-fc8453ee750a
+	// Generate Id:f71b1c95-0096-4c9c-a70b-1e95127e7382
 	public partial class ConfiguationPanel
 	{
 		public const string Name = "ConfiguationPanel";

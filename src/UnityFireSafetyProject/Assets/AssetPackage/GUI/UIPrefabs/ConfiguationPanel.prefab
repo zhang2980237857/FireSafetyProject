@@ -1482,6 +1482,7 @@ MonoBehaviour:
   Sound: {fileID: 6649514032355754748}
   BkVolume: {fileID: 2011032166340043153}
   SdVolume: {fileID: 7881847232312253809}
+  Quit: {fileID: 0}
 --- !u!1 &6590458912068749286
 GameObject:
   m_ObjectHideFlags: 0
