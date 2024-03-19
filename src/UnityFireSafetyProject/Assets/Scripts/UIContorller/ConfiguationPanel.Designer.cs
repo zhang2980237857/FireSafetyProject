@@ -5,11 +5,6 @@ using QFramework;
 
 namespace QFramework.UnityFireSafetyProject
 {
-<<<<<<< HEAD
-	// Generate Id:f71b1c95-0096-4c9c-a70b-1e95127e7382
-=======
-	// Generate Id:386f3cbc-de46-429a-b75f-23b86edf12ff
->>>>>>> 4bebca40286857b8c136724915324224944ab380
 	public partial class ConfiguationPanel
 	{
 		public const string Name = "ConfiguationPanel";

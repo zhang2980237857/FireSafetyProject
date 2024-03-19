@@ -17,7 +17,6 @@ namespace QFramework.Example
         {
 			if (Input.GetKeyDown(KeyCode.Escape))
 			{
-				
 				UIKit.OpenPanel<ConfiguationPanel>();
 			}
         }
