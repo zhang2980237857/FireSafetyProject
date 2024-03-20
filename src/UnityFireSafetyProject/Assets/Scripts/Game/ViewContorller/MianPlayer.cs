@@ -10,6 +10,8 @@ namespace QFramework.UnityFireSafetyProject
         Animator anim;		//角色动画控制器
         private CharacterController characterController;
         public static BindableProperty<int> timeSet = new BindableProperty<int>(1);
+
+        
         void Start()
         {
             //anim = GetComponent<Animator>();
@@ -34,5 +36,7 @@ namespace QFramework.UnityFireSafetyProject
             //转换为移动距离
             characterController.Move(moveAmount*moveSpeed*Time.deltaTime);  //角色移动
         }
+
+      
     }
 }

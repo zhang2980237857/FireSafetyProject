@@ -20,10 +20,10 @@ MonoBehaviour:
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/Game/ViewContorller
-    ClassName: MianPlayer
+    ClassName: VisionStick
     Namespace: QFramework.UnityFireSafetyProject
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic
-      partial class MianPlayer : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class VisionStick : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:657ef283-eb73-4222-89fe-3755ecf31b99\r\nusing UnityEngine;\r\n\r\nnamespace
-      QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic partial class MianPlayer\r\n\t{\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:84b4d245-129e-48b4-8e80-665513f81673\r\nusing UnityEngine;\r\n\r\nnamespace
+      QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic partial class VisionStick\r\n\t{\r\n\r\n\t}\r\n}\r\n"
