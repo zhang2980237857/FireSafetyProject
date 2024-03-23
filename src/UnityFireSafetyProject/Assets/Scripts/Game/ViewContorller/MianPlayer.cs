@@ -10,6 +10,7 @@ namespace QFramework.UnityFireSafetyProject
         Animator anim;		//½ÇÉ«¶¯»­¿ØÖÆÆ÷
         private CharacterController characterController;
         public static BindableProperty<int> timeSet = new BindableProperty<int>(1);
+        public static BindableProperty<bool> contrll = new BindableProperty<bool>(false);
 
         
         void Start()

@@ -1,4 +1,5 @@
 using QFramework;
+using QFramework.UnityFireSafetyProject;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,11 +21,12 @@ public class Insiantiateobj : MonoBehaviour
     }
     void Update()
     {
+        MouseContoller.isLocked = false;//需优化
+        ToggleButtonsInteractability(MianPlayer.contrll.Value);
     }
     public void ints(GameObject obj)
     {
         //将获取的脚本进行实例化
-        MouseContoller.isLocked = false;
         GameObject obj1 = Instantiate(obj,Model);
         obj1.GetComponent<Rigidbody>().useGravity = false;
         Vector3 pos = new Vector3(0, 0, 0);
@@ -40,5 +42,14 @@ public class Insiantiateobj : MonoBehaviour
     {
         //及时移除防止内存泄露
         exitBtn?.onClick?.RemoveAllListeners();
+    }
+    void ToggleButtonsInteractability(bool value)
+    {
+        Button[] buttons = ShowPanel.GetComponentsInChildren<Button>();
+
+        foreach (Button button in buttons)
+        {
+            button.interactable = !value;
+        }
     }
 }
