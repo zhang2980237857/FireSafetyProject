@@ -25,7 +25,6 @@ public class GameApp : MonoSingleton<GameApp>
         UILoading.isLoading.RegisterWithInitValue((a) => {
             if (!a)
             {
-                Debug.Log("a的值："+a);
                 //加载场景
                 //进行场景的实例化
                 mResLoader.LoadSync<GameObject>("Showroom").Instantiate();

@@ -12,14 +12,6 @@ namespace QFramework.UnityFireSafetyProject
         protected override void OnInit(IUIData uiData = null)
         {
             mData = uiData as ConfiguationPanelData ?? new ConfiguationPanelData();
-            // please add init code here
-
-            //BtnContinue.onClick.AddListener(() =>
-            //{
-            //    MouseContoller.isLocked = true; //锁定鼠标
-            //    this.CloseSelf();
-            //    print("游戏继续");
-            //});
             BtnContinue.onClick.AddListener(OnContiuneClicked);
             BtnExit.onClick.AddListener(OnExitClicked);
             BkMusic.onValueChanged.AddListener(OnBkMusicValueChanged);
