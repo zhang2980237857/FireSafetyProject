@@ -13,7 +13,7 @@ public class Insiantiateobj : MonoBehaviour
     public Transform Model;//呈现的模型，所放的位置
     public Transform ShowPanel;//展示界面
     public Transform Exit;//退出按钮
-    public TextMeshProUGUI Introduction;//用于放置介绍文本
+    public GameObject Introduction;//用于放置介绍文本
     string[] namesplit;//用于存放每一个文字的数组
     Button exitBtn= null;
     int Number = 1;
@@ -86,7 +86,7 @@ public class Insiantiateobj : MonoBehaviour
         
         while (index < namesplit.Length)
         {
-            Introduction.text += namesplit[index];
+            Introduction.GetComponent<Text>().text += namesplit[index]+"\n";
             index++;
             yield return new WaitForSeconds(0.2f);//间隔时间
         }
