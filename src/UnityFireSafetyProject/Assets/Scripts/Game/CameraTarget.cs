@@ -31,7 +31,7 @@ public class CameraTarget : MonoBehaviour
     }
     void Update()
     {
-
+        Debug.Log("×î½ü¾àÀë"+distance);
     }
     private void LateUpdate()
     {
@@ -54,6 +54,7 @@ public class CameraTarget : MonoBehaviour
         currentY = Mathf.Lerp(currentY, targetY, ySpeed * Time.deltaTime); ;
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0); 
         distance = targetDistance;
+        distance = Mathf.Clamp(distance, 2.6f, 6f);
         Vector3 position = rotation * new Vector3(0.0f, weightCenterHeight, -distance) + target.position + pivotOffset;
         transform.rotation = rotation;
         transform.position = position;
