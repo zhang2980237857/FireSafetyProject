@@ -37,6 +37,8 @@ public class Insiantiateobj : MonoBehaviour
         obj1.GetComponent<Rigidbody>().useGravity = false;
         Vector3 pos = new Vector3(0, 0, 0);
         obj1.transform.localPosition = pos;
+        obj1.AddComponent<Animator>();
+        obj1.GetComponent<Animator>().runtimeAnimatorController = GameApp.Instance.mResLoader.LoadSync<RuntimeAnimatorController>("Cube");
         //Introduction.text = obj1.name;
         namesplit = SplitTextByLength(obj1.name,1);
     }
