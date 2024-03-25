@@ -48,7 +48,7 @@ namespace QFramework.UnityFireSafetyProject
 			{
 				timer += Time.deltaTime;
 				LoadingSlider.value = (timer / 100) * 20;
-				LoadingProgress.text = "ÕýÔÚ¼ÓÔØ : " + Convert.ToInt32(timer * 20) + "%";
+				LoadingProgress.text = Convert.ToInt32(timer * 20) + "%";
 				if (timer > 5)
 				{
 					timer = 0;

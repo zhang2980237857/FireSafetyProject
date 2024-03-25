@@ -15,15 +15,19 @@ MonoBehaviour:
   CurrentTask:
     ShowLog: 0
     Status: 1
-    GameObject: {fileID: 0}
+    GameObject: {fileID: 755626900699844853, guid: 7311847fca1fc2242b89c27db60f0289, type: 3}
     From: 0
     NameToFullName: []
-    BindInfos: []
+    BindInfos:
+    - TypeName: UnityEngine.UI.Button
+      PathToRoot: Image/EnterBtn
+      MemberName: EnterBtn
     ScriptsFolder: Assets/Scripts/Game/ViewContorller
-    ClassName: VisionStick
+    ClassName: EnterPannel
     Namespace: QFramework.UnityFireSafetyProject
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic
-      partial class VisionStick : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class EnterPannel : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:84b4d245-129e-48b4-8e80-665513f81673\r\nusing UnityEngine;\r\n\r\nnamespace
-      QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic partial class VisionStick\r\n\t{\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:e1482c69-a69b-4fa7-8a35-8e2ca6c9230a\r\nusing UnityEngine;\r\n\r\nnamespace
+      QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic partial class EnterPannel\r\n\t{\r\n\r\n\t\tpublic
+      UnityEngine.UI.Button EnterBtn;\r\n\r\n\t}\r\n}\r\n"

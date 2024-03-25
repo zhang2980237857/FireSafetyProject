@@ -4,7 +4,6 @@ using UnityEngine;
 using QFramework;
 using System;
 using QFramework.UnityFireSafetyProject;
-using System.Runtime.CompilerServices;
 
 public class GameApp : MonoSingleton<GameApp>
 {
@@ -27,7 +26,9 @@ public class GameApp : MonoSingleton<GameApp>
             {
                 //加载场景
                 //进行场景的实例化
-                mResLoader.LoadSync<GameObject>("Showroom").Instantiate();
+                //mResLoader.LoadSync<GameObject>("Showroom").Instantiate();
+                UIKit.ClosePanel<UILoading>();
+                UIKit.OpenPanel<EnterPannel>();
             }
         }).UnRegisterWhenGameObjectDestroyed(this.gameObject);
     }
