@@ -1017,10 +1017,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7162761794101948245, guid: dbe71e7692aa55e4698e855a3e01c0a6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d25aacafdfa0f5478a459e3bf6ca085, type: 2}
+    - target: {fileID: -7062313874366494050, guid: dbe71e7692aa55e4698e855a3e01c0a6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d25aacafdfa0f5478a459e3bf6ca085, type: 2}
     - target: {fileID: 919132149155446097, guid: dbe71e7692aa55e4698e855a3e01c0a6, type: 3}
       propertyPath: m_Name
       value: "\u5B9E\u8BAD\u533A"
       objectReference: {fileID: 0}
+    - target: {fileID: 1187726510236815825, guid: dbe71e7692aa55e4698e855a3e01c0a6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d25aacafdfa0f5478a459e3bf6ca085, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbe71e7692aa55e4698e855a3e01c0a6, type: 3}
 --- !u!4 &5216731354446454004 stripped
