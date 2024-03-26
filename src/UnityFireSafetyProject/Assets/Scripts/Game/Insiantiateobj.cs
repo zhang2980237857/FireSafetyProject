@@ -19,6 +19,7 @@ public class Insiantiateobj : MonoBehaviour
     int Number = 1;
     int index = 0;
     public GameObject obj1;
+    public bool isStart = true;
     //public Animator animatorCube;
     void Start()
     {
@@ -101,9 +102,14 @@ public class Insiantiateobj : MonoBehaviour
     public void Stoprotate()
     {
         obj1.GetComponent<Animator>().SetTrigger("Stop");
+        isStart = false;
     }
     public void Startrotate()
     {
+        if (!isStart)
+        {
+            return;
+        }
         obj1.GetComponent<Animator>().SetTrigger("Start");
     }
 }

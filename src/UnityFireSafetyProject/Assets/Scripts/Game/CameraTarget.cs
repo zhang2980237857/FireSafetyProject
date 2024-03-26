@@ -53,6 +53,10 @@ public class CameraTarget : MonoBehaviour
                 targetY -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
             }
         }
+        if (Input.GetMouseButtonUp(1))
+        {
+            InsiantiateobjScript.isStart = true;
+        }
         InsiantiateobjScript.Startrotate();
         //转换后更新
         currentX = Mathf.Lerp(currentX,targetX,xSpeed*Time.deltaTime);
