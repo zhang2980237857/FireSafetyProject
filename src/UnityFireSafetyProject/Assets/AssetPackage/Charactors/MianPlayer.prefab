@@ -427,6 +427,7 @@ MonoBehaviour:
   PrefabFolder: Assets/AssetPackage/GUI/UIPrefabs
   ArchitectureFullTypeName: 
   moveSpeed: 5
+  image: {fileID: 2692035548020248487}
 --- !u!136 &4193958966168164359
 CapsuleCollider:
   m_ObjectHideFlags: 0

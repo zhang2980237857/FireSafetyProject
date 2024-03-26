@@ -1983,8 +1983,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -294, y: 112}
-  m_SizeDelta: {x: 800, y: 1500}
+  m_AnchoredPosition: {x: -294, y: 220}
+  m_SizeDelta: {x: 800, y: 1800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1986653554592973761
 CanvasRenderer:
@@ -3327,6 +3327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 231cee6022b4e55458410e9788ddd412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cube: {fileID: 9100000, guid: 025857098477b614e9d28478a5b9c90e, type: 2}
   target: {fileID: 1986653554038726047}
   pivotOffset: {x: 0, y: 0, z: 0}
   distance: 10
@@ -3356,3 +3357,4 @@ MonoBehaviour:
   ShowPanel: {fileID: 1986653554340835096}
   Exit: {fileID: 1986653554116987465}
   Introduction: {fileID: 657748641707707051}
+  objCenter: {fileID: 0}

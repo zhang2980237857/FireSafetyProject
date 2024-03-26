@@ -18,6 +18,8 @@ public class Insiantiateobj : MonoBehaviour
     Button exitBtn= null;
     int Number = 1;
     int index = 0;
+    public GameObject obj1;
+    //public Animator animatorCube;
     void Start()
     {
         exitBtn = Exit.gameObject.GetComponent<Button>();
@@ -33,17 +35,19 @@ public class Insiantiateobj : MonoBehaviour
     public void ints(GameObject obj)
     {
         //将获取的脚本进行实例化
-        GameObject obj1 = Instantiate(obj,Model);
+        obj1 = Instantiate(obj,Model);
         obj1.GetComponent<Rigidbody>().useGravity = false;
         Vector3 pos = new Vector3(0, 0, 0);
         obj1.transform.localPosition = pos;
         obj1.AddComponent<Animator>();
+        //获取动画控制器
         obj1.GetComponent<Animator>().runtimeAnimatorController = GameApp.Instance.mResLoader.LoadSync<RuntimeAnimatorController>("Cube");
-        //Introduction.text = obj1.name;
         namesplit = SplitTextByLength(obj1.name,1);
+        
     }
     private void OnDestroyShowPanel()
     {
+        MianPlayer.showState.Value = true;
         ShowPanel.gameObject.DestroySelf();
         MouseContoller.isLocked = true;
     }
@@ -54,6 +58,7 @@ public class Insiantiateobj : MonoBehaviour
     }
     void ToggleButtonsInteractability(bool value)
     {
+        //将按钮失活，防止在打开界面的同时点击到该界面
         Button[] buttons = ShowPanel.GetComponentsInChildren<Button>();
         foreach (Button button in buttons)
         {
@@ -61,7 +66,7 @@ public class Insiantiateobj : MonoBehaviour
         }
     }
     /// <summary>
-    /// 按照长度切分文本
+    /// 按照长度切分文本，为了实现文字的逐步显现
     /// </summary>
     /// <param name="text">文本</param>
     /// <param name="length">决定每个长度</param>
@@ -92,6 +97,14 @@ public class Insiantiateobj : MonoBehaviour
             index++;
             yield return new WaitForSeconds(0.2f);//间隔时间
         }
+    }
+    public void Stoprotate()
+    {
+        obj1.GetComponent<Animator>().SetTrigger("Stop");
+    }
+    public void Startrotate()
+    {
+        obj1.GetComponent<Animator>().SetTrigger("Start");
     }
 }
 
