@@ -15,19 +15,15 @@ MonoBehaviour:
   CurrentTask:
     ShowLog: 0
     Status: 1
-    GameObject: {fileID: 755626900699844853, guid: 7311847fca1fc2242b89c27db60f0289, type: 3}
+    GameObject: {fileID: 0}
     From: 0
     NameToFullName: []
-    BindInfos:
-    - TypeName: UnityEngine.UI.Button
-      PathToRoot: Image/EnterBtn
-      MemberName: EnterBtn
+    BindInfos: []
     ScriptsFolder: Assets/Scripts/Game/ViewContorller
-    ClassName: EnterPannel
+    ClassName: Showroom
     Namespace: QFramework.UnityFireSafetyProject
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic
-      partial class EnterPannel : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class Showroom : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:e1482c69-a69b-4fa7-8a35-8e2ca6c9230a\r\nusing UnityEngine;\r\n\r\nnamespace
-      QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic partial class EnterPannel\r\n\t{\r\n\r\n\t\tpublic
-      UnityEngine.UI.Button EnterBtn;\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:4a8d6fde-9096-405c-a7de-385d80427c62\r\nusing UnityEngine;\r\n\r\nnamespace
+      QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic partial class Showroom\r\n\t{\r\n\r\n\t}\r\n}\r\n"

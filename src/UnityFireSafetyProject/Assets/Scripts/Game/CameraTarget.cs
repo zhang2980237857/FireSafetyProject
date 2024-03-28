@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CameraTarget : MonoBehaviour
@@ -14,8 +15,8 @@ public class CameraTarget : MonoBehaviour
     public float xSpeed = 250.0f; // 相机水平旋转速度
     public float ySpeed = 250.0f; // 相机垂直旋转速度
     public bool allowYTilt = true; // 是否允许相机垂直旋转
-    public float yMinLimit = -360f; // 限制相机垂直旋转的最小角度
-    public float yMaxLimit = 360f; // 限制相机垂直旋转的最大角度
+    public float yMinLimit = -270f; // 限制相机垂直旋转的最小角度
+    public float yMaxLimit = 270f; // 限制相机垂直旋转的最大角度
     private float currentX = 0.0f; // 当前相机水平旋转角度
     private float currentY = 0.0f; // 当前相机垂直旋转角度
     private float targetX = 0f; // 目标水平旋转角度
@@ -28,7 +29,7 @@ public class CameraTarget : MonoBehaviour
         //初始化参数
         var angles = transform.eulerAngles;
         targetX = currentX = angles.x;
-        //targetY = currentY = Mathf.Clamp(angles.y - 20, yMinLimit, yMaxLimit);
+        targetY = currentY = Mathf.Clamp(angles.y - 20, yMinLimit, yMaxLimit);
         targetY = currentY = angles.y - 20;
         targetDistance = 3f;
         InsiantiateobjScript = GetComponent<Insiantiateobj>();
@@ -46,7 +47,6 @@ public class CameraTarget : MonoBehaviour
         //根据鼠标操作更新角度
         if (Input.GetMouseButton(1) || (Input.GetMouseButton(0) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))))//操作部分后续可以继续更改
         {
-            InsiantiateobjScript.Stoprotate();
             targetX += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
             if (allowYTilt)
             {
@@ -57,10 +57,10 @@ public class CameraTarget : MonoBehaviour
         {
             InsiantiateobjScript.isStart = true;
         }
-        InsiantiateobjScript.Startrotate();
         //转换后更新
         currentX = Mathf.Lerp(currentX,targetX,xSpeed*Time.deltaTime);
-        currentY = Mathf.Lerp(currentY, targetY, ySpeed * Time.deltaTime); ;
+        currentY = Mathf.Lerp(currentY, targetY, ySpeed * Time.deltaTime);
+        targetY  = Mathf.Clamp(targetY, yMinLimit, yMaxLimit);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0); 
         distance = targetDistance;
         distance = Mathf.Clamp(distance, 3.2f, 6f);
