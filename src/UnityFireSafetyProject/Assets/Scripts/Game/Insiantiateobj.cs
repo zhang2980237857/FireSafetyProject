@@ -2,7 +2,6 @@ using QFramework;
 using QFramework.UnityFireSafetyProject;
 using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,24 +11,27 @@ public class Insiantiateobj : MonoBehaviour
     //获取物体，因物体较少，所以采用直接挂载的方式获取
     public Transform Model;//呈现的模型，所放的位置
     public Transform ShowPanel;//展示界面
-    public Transform Exit;//退出按钮
     public GameObject Introduction;//用于放置介绍文本
     string[] namesplit;//用于存放每一个文字的数组
-    Button exitBtn= null;
-    int Number = 1;
     int index = 0;
     public GameObject obj1;
     public bool isStart = true;
+    public float rotationAmount = 30;//旋转程度
+    [Header("下面的是按钮")]
+    [Tooltip("拖取一个退出按钮")]public Button exitBtn = null;
+    [Tooltip("拖取一个停止按钮")] public Button StopRatationBtn = null;   //停止旋转按钮
     //public Animator animatorCube;
     void Start()
     {
-        exitBtn = Exit.gameObject.GetComponent<Button>();
         exitBtn.onClick.AddListener(OnDestroyShowPanel);
+        StopRatationBtn.onClick.AddListener(() =>
+        {
+            isStart = false;
+        });
         StartCoroutine( TypeText());
     }
     void Update()
     {
-        float time = 0;
         MouseContoller.isLocked = false;//需优化
         ToggleButtonsInteractability(MianPlayer.contrll.Value);
     }
@@ -40,10 +42,21 @@ public class Insiantiateobj : MonoBehaviour
         obj1.GetComponent<Rigidbody>().useGravity = false;
         Vector3 pos = new Vector3(0, 0, 0);
         obj1.transform.localPosition = pos;
-        obj1.AddComponent<Animator>();
-        //获取动画控制器
-        obj1.GetComponent<Animator>().runtimeAnimatorController = GameApp.Instance.mResLoader.LoadSync<RuntimeAnimatorController>("Cube");
+        //obj1.AddComponent<Animator>();
+        ////获取动画控制器
+        //obj1.GetComponent<Animator>().runtimeAnimatorController = GameApp.Instance.mResLoader.LoadSync<RuntimeAnimatorController>("Cube");
+        //物体自身旋转
+        
         namesplit = SplitTextByLength(obj1.name,1);
+        
+    }
+    void LateUpdate()
+    {
+        if (isStart)
+        {
+            obj1.transform.Rotate(Vector3.right, rotationAmount * Time.deltaTime);
+            obj1.transform.Rotate(Vector3.up, rotationAmount * Time.deltaTime);
+        }
         
     }
     private void OnDestroyShowPanel()
@@ -98,19 +111,6 @@ public class Insiantiateobj : MonoBehaviour
             index++;
             yield return new WaitForSeconds(0.2f);//间隔时间
         }
-    }
-    public void Stoprotate()
-    {
-        obj1.GetComponent<Animator>().SetTrigger("Stop");
-        isStart = false;
-    }
-    public void Startrotate()
-    {
-        if (!isStart)
-        {
-            return;
-        }
-        obj1.GetComponent<Animator>().SetTrigger("Start");
     }
 }
 

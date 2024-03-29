@@ -19,9 +19,9 @@ public class MouseContoller : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        RotationView();
+        RotationView();//避免角色移动的时候旋转摄像头出现抖动
     }
     private void RotationView()
     {
@@ -34,4 +34,5 @@ public class MouseContoller : MonoBehaviour
         transform.localRotation = Quaternion.Euler(yRotation, 0, 0); //摄像机上下旋转
         playerTransform.Rotate(mouseX * Vector3.up);  //玩家左右旋转
     }
+    
 }
