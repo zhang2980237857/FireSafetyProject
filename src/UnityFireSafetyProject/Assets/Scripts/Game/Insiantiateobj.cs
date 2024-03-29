@@ -2,6 +2,7 @@ using QFramework;
 using QFramework.UnityFireSafetyProject;
 using System;
 using System.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,11 +43,6 @@ public class Insiantiateobj : MonoBehaviour
         obj1.GetComponent<Rigidbody>().useGravity = false;
         Vector3 pos = new Vector3(0, 0, 0);
         obj1.transform.localPosition = pos;
-        //obj1.AddComponent<Animator>();
-        ////获取动画控制器
-        //obj1.GetComponent<Animator>().runtimeAnimatorController = GameApp.Instance.mResLoader.LoadSync<RuntimeAnimatorController>("Cube");
-        //物体自身旋转
-        
         namesplit = SplitTextByLength(obj1.name,1);
         
     }
@@ -67,6 +63,10 @@ public class Insiantiateobj : MonoBehaviour
     }
     private void OnDestroy()
     {
+        if (!exitBtn)
+        {
+            return;
+        }
         //及时移除防止内存泄露
         exitBtn?.onClick?.RemoveAllListeners();
     }

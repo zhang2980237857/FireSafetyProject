@@ -31,7 +31,7 @@ public class CameraTarget : MonoBehaviour
         targetX = currentX = angles.x;
         targetY = currentY = Mathf.Clamp(angles.y - 20, yMinLimit, yMaxLimit);
         targetY = currentY = angles.y - 20;
-        targetDistance = 3f;
+        targetDistance = 3.5f;
         InsiantiateobjScript = GetComponent<Insiantiateobj>();
     }
     void Update()
@@ -47,6 +47,9 @@ public class CameraTarget : MonoBehaviour
         //根据鼠标操作更新角度
         if (Input.GetMouseButton(1) || (Input.GetMouseButton(0) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))))//操作部分后续可以继续更改
         {
+
+            InsiantiateobjScript.isStart = false;
+            
             targetX += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
             if (allowYTilt)
             {
