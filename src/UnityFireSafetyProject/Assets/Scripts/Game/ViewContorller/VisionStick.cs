@@ -36,25 +36,6 @@ namespace QFramework.UnityFireSafetyProject
                 }
             }
         }
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == "InteractiveObj") //如何检测的是可交互物体就让它高光
-            {
-                 other1 = other;
-                //改为脚本的显示跟取消
-                other.GetComponent<Outline>().enabled = true;
-                other.GetComponent<Outline>().OutlineMode = Outline.Mode.OutlineVisible;
-                
-            }
-        }
-        private void OnTriggerExit(Collider other)
-        {
-            other1 = null;
-            if (other.tag == "InteractiveObj") //如何检测的是可交互物体就让它高光
-            {
-                other.GetComponent<Outline>().enabled = false;
-                other.GetComponent<Outline>().OutlineMode = Outline.Mode.OutlineHidden;
-            }
-        }
+       
     }
 }

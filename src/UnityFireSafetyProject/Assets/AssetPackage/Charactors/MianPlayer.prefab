@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 5213801631806276559}
   - component: {fileID: 5213801631806276558}
   - component: {fileID: 5921077687847997614}
-  - component: {fileID: 6955651968957258308}
+  - component: {fileID: 5637749664785747796}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -288,40 +288,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4d5fb1f137f34da31c00d6c88b4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6955651968957258308
+--- !u!114 &5637749664785747796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5213801631806276556}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c11fc24807cfa642acf94cc7d4d4a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  stencilZBufferDepth: 0
+  _downsampleFactor: 4
+  iterations: 2
+  blurMinSpread: 0.65
+  blurSpread: 0.25
+  _blurIntensity: 0.56
 --- !u!1 &7503761334090082292
 GameObject:
   m_ObjectHideFlags: 0
