@@ -1,81 +1,83 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using QFramework;
+using QFramework.UnityFireSafetyProject;
 
 public class HighlightableObject : MonoBehaviour
 {
 	#region Editable Fields
 	// Builtin layer reserved for the highlighting
 	public static int highlightingLayer = 7;
-	
+
 	// Constant highlighting turning on speed
 	private static float constantOnSpeed = 4.5f;
-	
+
 	// Constant highlighting turning off speed
 	private static float constantOffSpeed = 4f;
-	
+
 	// Default transparent cutoff value used for shaders without _Cutoff property
 	private static float transparentCutoff = 0.5f;
 	#endregion
-	
+
 	#region Private Fields
 	// 2 * PI constant required for flashing
 	private const float doublePI = 2f * Mathf.PI;
-	
+
 	// Cached materials
 	private List<HighlightingRendererCache> highlightableRenderers;
-	
+
 	// Cached layers of highlightable objects
 	private int[] layersCache;
-	
+
 	// Need to reinit materials flag
 	private bool materialsIsDirty = true;
-	
+
 	// Current state of highlighting
 	private bool currentState = false;
-	
+
 	// Current materials highlighting color
 	private Color currentColor;
-	
+
 	// Transition is active flag
 	private bool transitionActive = false;
-	
+
 	// Current transition value
 	private float transitionValue = 0f;
-	
+
 	// Flashing frequency
 	private float flashingFreq = 2f;
-	
+
 	// One-frame highlighting flag
 	private bool once = false;
-	
+
 	// One-frame highlighting color
 	private Color onceColor = Color.red;
-	
+
 	// Flashing state flag
 	private bool flashing = false;
-	
+
 	// Flashing from color
 	private Color flashingColorMin = new Color(0.0f, 1.0f, 1.0f, 0.0f);
-	
+
 	// Flashing to color
 	private Color flashingColorMax = new Color(0.0f, 1.0f, 1.0f, 1.0f);
-	
+
 	// Constant highlighting state flag
 	private bool constantly = false;
-	
+
 	// Constant highlighting color
 	private Color constantColor = Color.yellow;
-	
+
 	// Occluder
 	private bool occluder = false;
-	
+
 	// Currently used shaders ZWriting state
 	private bool zWrite = false;
-	
+
 	// Occlusion color (DON'T TOUCH THIS!)
 	private readonly Color occluderColor = new Color(0.0f, 0.0f, 0.0f, 0.005f);
-	
+
 	// 
 	private Material highlightingMaterial
 	{
@@ -84,7 +86,7 @@ public class HighlightableObject : MonoBehaviour
 			return zWrite ? opaqueZMaterial : opaqueMaterial;
 		}
 	}
-		
+
 	// Common (for this component) replacement material for opaque geometry highlighting
 	private Material _opaqueMaterial;
 	private Material opaqueMaterial
@@ -99,7 +101,7 @@ public class HighlightableObject : MonoBehaviour
 			return _opaqueMaterial;
 		}
 	}
-	
+
 	// Common (for this component) replacement material for opaque geometry highlighting with Z-Buffer writing enabled
 	private Material _opaqueZMaterial;
 	private Material opaqueZMaterial
@@ -114,7 +116,7 @@ public class HighlightableObject : MonoBehaviour
 			return _opaqueZMaterial;
 		}
 	}
-	
+
 	// 
 	private static Shader _opaqueShader;
 	private static Shader opaqueShader
@@ -128,7 +130,7 @@ public class HighlightableObject : MonoBehaviour
 			return _opaqueShader;
 		}
 	}
-	
+
 	// 
 	private static Shader _transparentShader;
 	public static Shader transparentShader
@@ -142,7 +144,7 @@ public class HighlightableObject : MonoBehaviour
 			return _transparentShader;
 		}
 	}
-	
+
 	// 
 	private static Shader _opaqueZShader;
 	private static Shader opaqueZShader
@@ -156,7 +158,7 @@ public class HighlightableObject : MonoBehaviour
 			return _opaqueZShader;
 		}
 	}
-	
+
 	// 
 	private static Shader _transparentZShader;
 	private static Shader transparentZShader
@@ -171,7 +173,7 @@ public class HighlightableObject : MonoBehaviour
 		}
 	}
 	#endregion
-	
+
 	#region Common
 	// Internal class for renderers caching
 	private class HighlightingRendererCache
@@ -181,7 +183,7 @@ public class HighlightableObject : MonoBehaviour
 		private Material[] sourceMaterials;
 		private Material[] replacementMaterials;
 		private List<int> transparentMaterialIndexes;
-		
+
 		// Constructor
 		public HighlightingRendererCache(Renderer rend, Material[] mats, Material sharedOpaqueMaterial, bool writeDepth)
 		{
@@ -190,7 +192,7 @@ public class HighlightableObject : MonoBehaviour
 			sourceMaterials = mats;
 			replacementMaterials = new Material[mats.Length];
 			transparentMaterialIndexes = new List<int>();
-			
+
 			for (int i = 0; i < mats.Length; i++)
 			{
 				Material sourceMat = mats[i];
@@ -208,9 +210,9 @@ public class HighlightableObject : MonoBehaviour
 						replacementMat.SetTextureOffset("_MainTex", sourceMat.mainTextureOffset);
 						replacementMat.SetTextureScale("_MainTex", sourceMat.mainTextureScale);
 					}
-					
+
 					replacementMat.SetFloat("_Cutoff", sourceMat.HasProperty("_Cutoff") ? sourceMat.GetFloat("_Cutoff") : transparentCutoff);
-					
+
 					replacementMaterials[i] = replacementMat;
 					transparentMaterialIndexes.Add(i);
 				}
@@ -220,13 +222,13 @@ public class HighlightableObject : MonoBehaviour
 				}
 			}
 		}
-		
+
 		// Based on given state variable, replaces materials of this cached renderer to the highlighted ones and back
 		public void SetState(bool state)
 		{
 			rendererCached.sharedMaterials = state ? replacementMaterials : sourceMaterials;
 		}
-		
+
 		// Sets given color as the highlighting color on all transparent materials for this cached renderer
 		public void SetColorForTransparent(Color clr)
 		{
@@ -236,7 +238,7 @@ public class HighlightableObject : MonoBehaviour
 			}
 		}
 	}
-	
+
 	// 
 	private void OnEnable()
 	{
@@ -244,20 +246,20 @@ public class HighlightableObject : MonoBehaviour
 		// Subscribe to highlighting event
 		HighlightingEffect.highlightingEvent += UpdateEventHandler;
 	}
-	
+
 	// 
 	private void OnDisable()
 	{
 		StopAllCoroutines();
 		// Unsubscribe from highlighting event
 		HighlightingEffect.highlightingEvent -= UpdateEventHandler;
-		
+
 		// Clear cached renderers
 		if (highlightableRenderers != null)
 		{
 			highlightableRenderers.Clear();
 		}
-		
+
 		// Reset highlighting parameters to default values
 		layersCache = null;
 		materialsIsDirty = true;
@@ -270,7 +272,7 @@ public class HighlightableObject : MonoBehaviour
 		constantly = false;
 		occluder = false;
 		zWrite = false;
-		
+
 		/* 
 		// Reset custom parameters of the highlighting
 		onceColor = Color.red;
@@ -279,19 +281,19 @@ public class HighlightableObject : MonoBehaviour
 		flashingFreq = 2f;
 		constantColor = Color.yellow;
 		*/
-		
+
 		if (_opaqueMaterial)
 		{
 			DestroyImmediate(_opaqueMaterial);
 		}
-		
+
 		if (_opaqueZMaterial)
 		{
 			DestroyImmediate(_opaqueZMaterial);
 		}
 	}
 	#endregion
-	
+
 	#region Public Methods
 	/// <summary>
 	/// Materials reinitialization. 
@@ -302,7 +304,7 @@ public class HighlightableObject : MonoBehaviour
 	{
 		materialsIsDirty = true;
 	}
-	
+
 	/// <summary>
 	/// Immediately restore original materials. Obsolete. Use ReinitMaterials() instead.
 	/// </summary>
@@ -311,7 +313,7 @@ public class HighlightableObject : MonoBehaviour
 		Debug.LogWarning("HighlightingSystem : RestoreMaterials() is obsolete. Please use ReinitMaterials() instead.");
 		ReinitMaterials();
 	}
-	
+
 	/// <summary>
 	/// Set color for one-frame highlighting mode.
 	/// </summary>
@@ -322,7 +324,7 @@ public class HighlightableObject : MonoBehaviour
 	{
 		onceColor = color;
 	}
-	
+
 	/// <summary>
 	/// Turn on one-frame highlighting.
 	/// </summary>
@@ -331,7 +333,7 @@ public class HighlightableObject : MonoBehaviour
 		// Highlight object only in this frame
 		once = true;
 	}
-	
+
 	/// <summary>
 	/// Turn on one-frame highlighting with given color.
 	/// Can be called multiple times per update, color only from the latest call will be used.
@@ -345,7 +347,7 @@ public class HighlightableObject : MonoBehaviour
 		onceColor = color;
 		On();
 	}
-	
+
 	/// <summary>
 	/// Set flashing parameters.
 	/// </summary>
@@ -364,7 +366,7 @@ public class HighlightableObject : MonoBehaviour
 		flashingColorMax = color2;
 		flashingFreq = freq;
 	}
-	
+
 	/// <summary>
 	/// Turn on flashing.
 	/// </summary>
@@ -372,7 +374,7 @@ public class HighlightableObject : MonoBehaviour
 	{
 		flashing = true;
 	}
-	
+
 	/// <summary>
 	/// Turn on flashing from color1 to color2.
 	/// </summary>
@@ -388,7 +390,7 @@ public class HighlightableObject : MonoBehaviour
 		flashingColorMax = color2;
 		FlashingOn();
 	}
-	
+
 	/// <summary>
 	/// Turn on flashing from color1 to color2 with given frequency.
 	/// </summary>
@@ -406,7 +408,7 @@ public class HighlightableObject : MonoBehaviour
 		flashingFreq = freq;
 		FlashingOn(color1, color2);
 	}
-	
+
 	/// <summary>
 	/// Turn on flashing with given frequency.
 	/// </summary>
@@ -418,7 +420,7 @@ public class HighlightableObject : MonoBehaviour
 		flashingFreq = freq;
 		FlashingOn();
 	}
-	
+
 	/// <summary>
 	/// Turn off flashing.
 	/// </summary>
@@ -426,7 +428,7 @@ public class HighlightableObject : MonoBehaviour
 	{
 		flashing = false;
 	}
-	
+
 	/// <summary>
 	/// Switch flashing mode.
 	/// </summary>
@@ -434,7 +436,7 @@ public class HighlightableObject : MonoBehaviour
 	{
 		flashing = !flashing;
 	}
-	
+
 	/// <summary>
 	/// Set constant highlighting color.
 	/// </summary>
@@ -445,7 +447,7 @@ public class HighlightableObject : MonoBehaviour
 	{
 		constantColor = color;
 	}
-	
+
 	/// <summary>
 	/// Fade in constant highlighting.
 	/// </summary>
@@ -456,7 +458,7 @@ public class HighlightableObject : MonoBehaviour
 		// Start transition
 		transitionActive = true;
 	}
-	
+
 	/// <summary>
 	/// Fade in constant highlighting with given color.
 	/// </summary>
@@ -469,7 +471,7 @@ public class HighlightableObject : MonoBehaviour
 		constantColor = color;
 		ConstantOn();
 	}
-	
+
 	/// <summary>
 	/// Fade out constant highlighting.
 	/// </summary>
@@ -480,7 +482,7 @@ public class HighlightableObject : MonoBehaviour
 		// Start transition
 		transitionActive = true;
 	}
-	
+
 	/// <summary>
 	/// Switch Constant Highlighting.
 	/// </summary>
@@ -491,7 +493,7 @@ public class HighlightableObject : MonoBehaviour
 		// Start transition
 		transitionActive = true;
 	}
-	
+
 	/// <summary>
 	/// Turn on constant highlighting immediately (without fading in).
 	/// </summary>
@@ -503,7 +505,7 @@ public class HighlightableObject : MonoBehaviour
 		// Stop transition
 		transitionActive = false;
 	}
-	
+
 	/// <summary>
 	/// Turn on constant highlighting with given color immediately (without fading in).
 	/// </summary>
@@ -516,7 +518,7 @@ public class HighlightableObject : MonoBehaviour
 		constantColor = color;
 		ConstantOnImmediate();
 	}
-	
+
 	/// <summary>
 	/// Turn off constant highlighting immediately (without fading out).
 	/// </summary>
@@ -528,7 +530,7 @@ public class HighlightableObject : MonoBehaviour
 		// Stop transition
 		transitionActive = false;
 	}
-	
+
 	/// <summary>
 	/// Switch constant highlighting immediately (without fading in/out).
 	/// </summary>
@@ -540,7 +542,7 @@ public class HighlightableObject : MonoBehaviour
 		// Stop transition
 		transitionActive = false;
 	}
-	
+
 	/// <summary>
 	/// Enable occluder mode
 	/// </summary>
@@ -548,7 +550,7 @@ public class HighlightableObject : MonoBehaviour
 	{
 		occluder = true;
 	}
-	
+
 	/// <summary>
 	/// Disable occluder mode
 	/// </summary>
@@ -556,7 +558,7 @@ public class HighlightableObject : MonoBehaviour
 	{
 		occluder = false;
 	}
-	
+
 	/// <summary>
 	/// Switch occluder mode
 	/// </summary>
@@ -564,7 +566,7 @@ public class HighlightableObject : MonoBehaviour
 	{
 		occluder = !occluder;
 	}
-	
+
 	/// <summary>
 	/// Turn off all types of highlighting. 
 	/// </summary>
@@ -579,7 +581,7 @@ public class HighlightableObject : MonoBehaviour
 		// Stop transition
 		transitionActive = false;
 	}
-	
+
 	/// <summary>
 	/// Destroy this HighlightableObject component.
 	/// </summary>
@@ -588,48 +590,48 @@ public class HighlightableObject : MonoBehaviour
 		Destroy(this);
 	}
 	#endregion
-	
-	
+
+
 	#region Private Methods
 	// Materials initialisation
 	private void InitMaterials(bool writeDepth)
 	{
 		currentState = false;
-		
+
 		zWrite = writeDepth;
-		
+
 		highlightableRenderers = new List<HighlightingRendererCache>();
-		
+
 		MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
 		CacheRenderers(mr);
-		
+
 		SkinnedMeshRenderer[] smr = GetComponentsInChildren<SkinnedMeshRenderer>();
 		CacheRenderers(smr);
 
 #if !UNITY_FLASH
-        SkinnedMeshRenderer[] cr = GetComponentsInChildren<SkinnedMeshRenderer>();
+		SkinnedMeshRenderer[] cr = GetComponentsInChildren<SkinnedMeshRenderer>();
 		CacheRenderers(cr);
-		#endif
-		
+#endif
+
 		currentState = false;
 		materialsIsDirty = false;
 		currentColor = Color.clear;
 	}
-	
+
 	// Cache given renderers properties
 	private void CacheRenderers(Renderer[] renderers)
 	{
 		for (int i = 0; i < renderers.Length; i++)
 		{
 			Material[] materials = renderers[i].sharedMaterials;
-			
+
 			if (materials != null)
 			{
 				highlightableRenderers.Add(new HighlightingRendererCache(renderers[i], materials, highlightingMaterial, zWrite));
 			}
 		}
 	}
-	
+
 	// Update highlighting color to a given value
 	private void SetColor(Color c)
 	{
@@ -637,7 +639,7 @@ public class HighlightableObject : MonoBehaviour
 		{
 			return;
 		}
-		
+
 		if (zWrite)
 		{
 			opaqueZMaterial.SetColor("_Outline", c);
@@ -646,15 +648,15 @@ public class HighlightableObject : MonoBehaviour
 		{
 			opaqueMaterial.SetColor("_Outline", c);
 		}
-		
+
 		for (int i = 0; i < highlightableRenderers.Count; i++)
 		{
 			highlightableRenderers[i].SetColorForTransparent(c);
 		}
-		
+
 		currentColor = c;
 	}
-	
+
 	// Set new color if needed
 	private void UpdateColors()
 	{
@@ -663,19 +665,19 @@ public class HighlightableObject : MonoBehaviour
 		{
 			return;
 		}
-		
+
 		if (occluder)
 		{
 			SetColor(occluderColor);
 			return;
 		}
-		
+
 		if (once)
 		{
 			SetColor(onceColor);
 			return;
 		}
-		
+
 		if (flashing)
 		{
 			// Flashing frequency is not affected by Time.timeScale
@@ -683,7 +685,7 @@ public class HighlightableObject : MonoBehaviour
 			SetColor(c);
 			return;
 		}
-		
+
 		if (transitionActive)
 		{
 			Color c = new Color(constantColor.r, constantColor.g, constantColor.b, constantColor.a * transitionValue);
@@ -696,7 +698,7 @@ public class HighlightableObject : MonoBehaviour
 			return;
 		}
 	}
-	
+
 	// Calculate new transition value if needed.
 	private void PerformTransition()
 	{
@@ -704,21 +706,21 @@ public class HighlightableObject : MonoBehaviour
 		{
 			return;
 		}
-		
+
 		float targetValue = constantly ? 1f : 0f;
-		
+
 		// Is transition finished?
 		if (transitionValue == targetValue)
 		{
 			transitionActive = false;
 			return;
 		}
-		
+
 		if (Time.timeScale != 0f)
 		{
 			// Calculating delta time untouched by Time.timeScale
 			float unscaledDeltaTime = Time.deltaTime / Time.timeScale;
-			
+
 			// Calculating new transition value
 			transitionValue += (constantly ? constantOnSpeed : -constantOffSpeed) * unscaledDeltaTime;
 			transitionValue = Mathf.Clamp01(transitionValue);
@@ -728,7 +730,7 @@ public class HighlightableObject : MonoBehaviour
 			return;
 		}
 	}
-	
+
 	// Highlighting event handler (main highlighting method)
 	private void UpdateEventHandler(bool trigger, bool writeDepth)
 	{
@@ -740,20 +742,20 @@ public class HighlightableObject : MonoBehaviour
 			{
 				materialsIsDirty = true;
 			}
-			
+
 			// Initialize new materials if needed
 			if (materialsIsDirty)
 			{
 				InitMaterials(writeDepth);
 			}
-			
+
 			currentState = (once || flashing || constantly || transitionActive || occluder);
-			
+
 			if (currentState)
 			{
 				UpdateColors();
 				PerformTransition();
-				
+
 				if (highlightableRenderers != null)
 				{
 					layersCache = new int[highlightableRenderers.Count];
@@ -782,7 +784,7 @@ public class HighlightableObject : MonoBehaviour
 			}
 		}
 	}
-	
+
 	IEnumerator EndOfFrame()
 	{
 		while (enabled)
@@ -794,5 +796,17 @@ public class HighlightableObject : MonoBehaviour
 	}
 	#endregion
 
-	
+	#region 自定义方法
+	/// <summary>
+	/// 跳转至火灾安全标志界面
+	/// </summary>
+	public void ToFireFlagPannel(string message)
+	{
+		//跳转界面逻辑实现
+		UIKit.OpenPanel<FireSafatyFlagPannel>(new FireSafatyFlagPannelData()
+		{
+			info = message
+        }); ;
+	}
+    #endregion
 }

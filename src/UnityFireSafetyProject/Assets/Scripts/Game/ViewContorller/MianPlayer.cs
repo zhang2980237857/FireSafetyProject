@@ -111,6 +111,10 @@ namespace QFramework.UnityFireSafetyProject
                     //打开高光
                     previousHitObject.GetComponent<HighlightableObject>().ConstantOn(Color.red);
                     previousHitObject.GetComponent<Animation>().enabled = true;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        previousHitObject.GetComponent<HighlightableObject>().ToFireFlagPannel("这是main面板传递的信息"+transform.name);
+                    }
                 }
             }
             else
