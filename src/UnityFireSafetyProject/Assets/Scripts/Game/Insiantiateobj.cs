@@ -29,7 +29,7 @@ public class Insiantiateobj : MonoBehaviour
         {
             isStart = false;
         });
-        StartCoroutine( TypeText());
+        StartCoroutine(TypeText());
     }
     void Update()
     {

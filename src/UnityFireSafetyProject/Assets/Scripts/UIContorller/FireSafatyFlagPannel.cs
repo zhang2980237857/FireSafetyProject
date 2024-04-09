@@ -18,7 +18,9 @@ namespace QFramework.UnityFireSafetyProject
 		
 		protected override void OnOpen(IUIData uiData = null)
 		{
-		}
+            //先解除鼠标锁定
+            MouseContoller.isLocked = false;
+        }
 		
 		protected override void OnShow()
 		{
@@ -26,10 +28,14 @@ namespace QFramework.UnityFireSafetyProject
 		
 		protected override void OnHide()
 		{
-		}
+            //当当前面板被关闭的时候
+            //锁定鼠标
+            MouseContoller.isLocked = true;
+        }
 		
 		protected override void OnClose()
 		{
-		}
+            
+        }
 	}
 }

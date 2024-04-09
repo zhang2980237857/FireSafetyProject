@@ -1,7 +1,4 @@
 using UnityEngine;
-using QFramework;
-using UnityEngine.UIElements;
-using UnityEngine.Playables;
 using DG.Tweening;
 
 namespace QFramework.UnityFireSafetyProject
@@ -27,10 +24,9 @@ namespace QFramework.UnityFireSafetyProject
         private GameObject previousHitObject; // 之前被碰撞的物体
         private float rayDistance = 4f;   //玩家最大可获取物体范围
         Vector3 velocity;
+        
         void Start()
         {
-            
-            //anim = GetComponent<Animator>();
             characterController = this.GetComponent<CharacterController>();
             timeSet.RegisterWithInitValue((timeSet) =>
             {
@@ -81,40 +77,51 @@ namespace QFramework.UnityFireSafetyProject
             RaycastHit hit;
             if (Physics.Raycast(ray,out hit,rayDistance))    //判断是否碰撞物体
             {
+                
                 if (hit.collider.transform.CompareTag("InteractiveObj"))
                 {
+                    bool isRunDotween = false;
                     if (previousHitObject != null && previousHitObject != hit.collider.gameObject)
                     {
                         //设置高光关闭
                         previousHitObject.GetComponent<HighlightableObject>().ConstantOff();
-                        previousHitObject.GetComponent<Animation>().enabled = false;
+                        
                         previousHitObject = null; // 将之前被碰撞的物体设为null
                     }
-                    previousHitObject = hit.collider.gameObject;//保存起来
+                    if (previousHitObject == null)
+                    {
+                        
+                        if (hit.collider.transform.name.Contains("消防标识")&&!isRunDotween)
+                        {
+                            isRunDotween = true;
+                            Vector3 initScale = hit.collider.transform.localScale; //消防物体标识的初始缩放
+                            hit.collider.transform.DOScale(hit.collider.transform.localScale * 1.2f, 0.8f).OnComplete(() => { hit.collider.transform.DOScale(initScale, 0.4f); isRunDotween = false; });
+                        }
+                        //打开高光一次
+                        hit.collider.gameObject.GetComponent<HighlightableObject>().ConstantOn(Color.red);
+                    }
+                    previousHitObject = hit.collider.gameObject;//把当前物体保存起来
                     //判断场景中是否已经存在展示界面，如果已经存在就不再生成
                     if (!GameObject.Find("showPrecorrect(Clone)") && Input.GetMouseButtonDown(0))
                     {
-                        
                         //实例化物体
                         if (!previousHitObject.name.Contains("消防标识"))
                         {
                             GameApp.Instance.mResLoader.LoadSync<GameObject>("showPrecorrect").Instantiate().GetComponentInChildren<Insiantiateobj>().ints(previousHitObject.transform.gameObject);
                             MianPlayer.showState.Value = false;
                         }
-                        else
+                        else if (previousHitObject.name.Contains("消防标识"))
                         {
                             //对于消防标识类逻辑
-                            Debug.Log(previousHitObject.name);
-                            
+                            previousHitObject.GetComponent<HighlightableObject>().ToFireFlagPannel("这是main面板传递的信息" + transform.name);
                         }
                     }
-                    //打开高光
-                    previousHitObject.GetComponent<HighlightableObject>().ConstantOn(Color.red);
-                    previousHitObject.GetComponent<Animation>().enabled = true;
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        previousHitObject.GetComponent<HighlightableObject>().ToFireFlagPannel("这是main面板传递的信息"+transform.name);
-                    }
+                }
+                else if(!hit.collider.transform.CompareTag("InteractiveObj")&& previousHitObject!=null)
+                {
+                    //设置高光关闭
+                    previousHitObject.GetComponent<HighlightableObject>().ConstantOff();
+                    previousHitObject = null; // 将之前被碰撞的物体设为null
                 }
             }
             else
@@ -124,12 +131,11 @@ namespace QFramework.UnityFireSafetyProject
                 {
                     //设置高光关闭
                     previousHitObject.GetComponent<HighlightableObject>().ConstantOff();
-                    previousHitObject.GetComponent<Animation>().enabled = false;
                     previousHitObject = null; // 将之前被碰撞的物体设为null
                 }
             }
         }
-
+        
         private void RunSpeed()
         {
             if (Input.GetKey(KeyCode.LeftShift))
