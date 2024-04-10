@@ -806,7 +806,7 @@ public class HighlightableObject : MonoBehaviour
 		UIKit.OpenPanel<FireSafatyFlagPannel>(new FireSafatyFlagPannelData()
 		{
 			info = message
-        }); ;
+        }); 
 	}
     #endregion
 }

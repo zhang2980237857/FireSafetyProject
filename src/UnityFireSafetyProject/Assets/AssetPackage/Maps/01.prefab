@@ -6376,7 +6376,7 @@ BoxCollider:
   m_GameObject: {fileID: 2093105408169254394}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -13506,9 +13506,8 @@ GameObject:
   - component: {fileID: 8578444458733443920}
   - component: {fileID: 4416950538408338649}
   - component: {fileID: 5627733263741923556}
-  - component: {fileID: 4490158420383811725}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: "\u7B54\u9898\u80CC\u666F"
   m_TagString: InteractiveObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13609,21 +13608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!111 &4490158420383811725
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8498025650513235722}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &8600239402599364914
 GameObject:
   m_ObjectHideFlags: 0
@@ -13745,7 +13729,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8827751304572222142}
   m_LocalRotation: {x: 0.00000004214684, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.1999898}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1490533536602023098}
@@ -13753,7 +13737,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.080001, y: -1.26}
+  m_AnchoredPosition: {x: 8.08, y: -1.41}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &8659933185680361384
@@ -13817,7 +13801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u6D88\u9632\u5B89\u5168\u77E5\u8BC6\u6D4B\u9A8C"
+  m_text: "\u6D88\u9632\u5B89\u5168\u77E5\u8BC6\u6D4B\u9A8C\n\u70B9\u51FB\u5F00\u7B54\u9898"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0c1ddb4372d47514fa65ba5b46b59f2d, type: 2}
   m_sharedMaterial: {fileID: -1439207966153984062, guid: 0c1ddb4372d47514fa65ba5b46b59f2d, type: 2}
