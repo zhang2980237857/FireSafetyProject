@@ -30,6 +30,7 @@ public class Insiantiateobj : MonoBehaviour
             isStart = false;
         });
         StartCoroutine(TypeText());
+
     }
     void Update()
     {
@@ -60,6 +61,7 @@ public class Insiantiateobj : MonoBehaviour
         MianPlayer.showState.Value = true;
         ShowPanel.gameObject.DestroySelf();
         MouseContoller.isLocked = true;
+
     }
     private void OnDestroy()
     {

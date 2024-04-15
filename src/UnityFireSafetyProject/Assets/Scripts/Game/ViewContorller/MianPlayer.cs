@@ -20,9 +20,10 @@ namespace QFramework.UnityFireSafetyProject
         public static BindableProperty<int> timeSet = new BindableProperty<int>(1);
         public static BindableProperty<bool> contrll = new BindableProperty<bool>(false);
         public static BindableProperty<bool> showState = new BindableProperty<bool>(true);
+
         public GameObject image;
         private GameObject previousHitObject; // 之前被碰撞的物体
-        private float rayDistance = 4f;   //玩家最大可获取物体范围
+        private float rayDistance = 7f;   //玩家最大可获取物体范围
         Vector3 velocity;
         
         void Start()
@@ -112,7 +113,8 @@ namespace QFramework.UnityFireSafetyProject
                         }else if (previousHitObject.name.Contains("答题"))
                         {
                             //跳转到答题界面
-                            UIKit.OpenPanel<AnswerPanel>();
+                            //UIKit.OpenPanel<AnswerPanel>();
+                            UIKit.OpenPanel<StartAnswerPanel>();
                         }
                     }
                 }

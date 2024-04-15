@@ -15,15 +15,15 @@ MonoBehaviour:
   CurrentTask:
     ShowLog: 0
     Status: 1
-    GameObject: {fileID: 0}
+    GameObject: {fileID: 4698126611552364076, guid: dd4731e3716f61340bcbf295094edda7, type: 3}
     From: 0
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/Game/ViewContorller
-    ClassName: StartAnswerPanel
+    ClassName: changjing
     Namespace: QFramework.UnityFireSafetyProject
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic
-      partial class StartAnswerPanel : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class changjing : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:15961645-dbda-48ab-87a6-d8f0f3157a79\r\nusing UnityEngine;\r\n\r\nnamespace
-      QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic partial class StartAnswerPanel\r\n\t{\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:6acc992d-f6ea-4beb-9a80-904b547f6dbb\r\nusing UnityEngine;\r\n\r\nnamespace
+      QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic partial class changjing\r\n\t{\r\n\r\n\t}\r\n}\r\n"

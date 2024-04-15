@@ -25,7 +25,7 @@ namespace QFramework.UnityFireSafetyProject
 		{
             this.EnterBtn.onClick.AddListener(() =>
             {
-                mLoader.LoadSync<GameObject>("Showroom").Instantiate();
+                mLoader.LoadSync<GameObject>("changjing").Instantiate();
 				UIKit.ClosePanel<EnterPannel>();
             });
         }
