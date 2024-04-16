@@ -25,7 +25,7 @@ namespace QFramework.UnityFireSafetyProject
 
         protected override void OnOpen(IUIData uiData = null)
         {
-            MianPlayer.contrll.Value = true;
+            MianPlayer.contrll.Value = false;
             MouseContoller.isLocked = false;
             //TODO角色暂停
             MianPlayer.timeSet.Value = 0;
@@ -48,7 +48,7 @@ namespace QFramework.UnityFireSafetyProject
             //两次esc进行关闭
             if (Input.GetKeyDown(KeyCode.Escape) && !UILoading.isLoading.Value)
             {
-                MianPlayer.contrll.Value = false;
+                MianPlayer.contrll.Value = true;
                 MouseContoller.isLocked = true; //锁定鼠标
                 MianPlayer.timeSet.Value = 1;
                 this.CloseSelf();

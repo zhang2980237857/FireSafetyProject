@@ -1,5 +1,6 @@
 using UnityEngine;
 using QFramework;
+using UnityEditor.SceneManagement;
 
 namespace QFramework.UnityFireSafetyProject
 {
@@ -7,6 +8,7 @@ namespace QFramework.UnityFireSafetyProject
 	{
         void Start()
         {
+            MianPlayer.contrll.Value = true;
             // Code Here
         }
         void Update()

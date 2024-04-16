@@ -1439,7 +1439,7 @@ RectTransform:
   m_GameObject: {fileID: 1986653554116987464}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.13, y: 1.13, z: 1.13}
   m_Children:
   - {fileID: 1986653553463299621}
   m_Father: {fileID: 1986653555043457734}
@@ -1447,7 +1447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 42, y: -42}
+  m_AnchoredPosition: {x: 68, y: -68}
   m_SizeDelta: {x: 84, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1986653554116987460
@@ -1843,6 +1843,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1986653554340835096}
+  - component: {fileID: 8018855625261849014}
   m_Layer: 0
   m_Name: showPrecorrect
   m_TagString: ShowPlatform
@@ -1868,6 +1869,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8018855625261849014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986653554340835103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18828deecbb5354bb29e11b791d2e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Namespace: QFramework.UnityFireSafetyProject
+  ScriptName: showPrecorrect
+  ScriptsFolder: Assets/Scripts/Game/ViewContorller
+  GeneratePrefab: 0
+  PrefabFolder: Assets/AssetPackage/GUI/UIPrefabs
+  ArchitectureFullTypeName: 
 --- !u!1 &1986653554501796801
 GameObject:
   m_ObjectHideFlags: 0

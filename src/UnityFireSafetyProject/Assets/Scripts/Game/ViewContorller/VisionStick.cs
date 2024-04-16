@@ -27,7 +27,6 @@ namespace QFramework.UnityFireSafetyProject
                     {
                         obj = GameApp.Instance.mResLoader.LoadSync<GameObject>("showPrecorrect").Instantiate();
                         obj.GetComponentInChildren<Insiantiateobj>().ints(other1.transform.gameObject);
-                        MianPlayer.showState.Value = false;
                     }
                 }
                 catch

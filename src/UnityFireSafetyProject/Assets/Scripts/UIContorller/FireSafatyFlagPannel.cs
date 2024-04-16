@@ -18,7 +18,7 @@ namespace QFramework.UnityFireSafetyProject
 		
 		protected override void OnOpen(IUIData uiData = null)
 		{
-            //先解除鼠标锁定
+            MianPlayer.contrll.Value = false;
             MouseContoller.isLocked = false;
         }
 		
@@ -28,8 +28,7 @@ namespace QFramework.UnityFireSafetyProject
 		
 		protected override void OnHide()
 		{
-            //当当前面板被关闭的时候
-            //锁定鼠标
+            MianPlayer.contrll.Value = true;
             MouseContoller.isLocked = true;
         }
 		

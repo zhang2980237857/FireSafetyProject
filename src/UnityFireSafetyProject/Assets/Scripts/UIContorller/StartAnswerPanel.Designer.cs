@@ -5,16 +5,19 @@ using QFramework;
 
 namespace QFramework.UnityFireSafetyProject
 {
-	// Generate Id:c29f8c60-c307-4ace-b8ae-1adf3db0e49b
+	// Generate Id:21de28fb-ec44-4277-80e4-4bebc1ac7742
 	public partial class StartAnswerPanel
 	{
 		public const string Name = "StartAnswerPanel";
 		
+		[SerializeField]
+		public UnityEngine.UI.Button BtnStart;
 		
 		private StartAnswerPanelData mPrivateData = null;
 		
 		protected override void ClearUIComponents()
 		{
+			BtnStart = null;
 			
 			mData = null;
 		}

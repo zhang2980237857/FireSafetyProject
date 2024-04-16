@@ -19,7 +19,7 @@ namespace QFramework.UnityFireSafetyProject
 		
 		protected override void OnOpen(IUIData uiData = null)
 		{
-		}
+        }
 		
 		protected override void OnShow()
 		{
@@ -32,7 +32,7 @@ namespace QFramework.UnityFireSafetyProject
 		
 		protected override void OnHide()
 		{
-		}
+        }
 		
 		protected override void OnClose()
 		{

@@ -17,13 +17,17 @@ namespace QFramework.UnityFireSafetyProject
         Vector3 moveAmount;             //移动距离
         Animator anim;		//角色动画控制器
         private CharacterController characterController;
+
+        //timeSet：为0时间暂停，为1正常
         public static BindableProperty<int> timeSet = new BindableProperty<int>(1);
+        //contrll：为false时player不移动,为true正常
         public static BindableProperty<bool> contrll = new BindableProperty<bool>(false);
-        public static BindableProperty<bool> showState = new BindableProperty<bool>(true);
+        //showState：为true时UI打开，为false时无UI
+        public static BindableProperty<bool> showState = new BindableProperty<bool>(false);
 
         public GameObject image;
         private GameObject previousHitObject; // 之前被碰撞的物体
-        private float rayDistance = 7f;   //玩家最大可获取物体范围
+        private float rayDistance = 9f;   //玩家最大可获取物体范围
         Vector3 velocity;
         
         void Start()
@@ -43,12 +47,16 @@ namespace QFramework.UnityFireSafetyProject
         void FixedUpdate()
         {
             RunSpeed();
-            PlayerMoving();
-            image.SetActive(showState.Value);
-
+            image.SetActive(!showState.Value);
+            if (contrll.Value != false)
+            {
+                PlayerMoving();
+            }
         }
         private void PlayerMoving()
         {
+            
+
             float hor = Input.GetAxisRaw("Horizontal");
             float ver = Input.GetAxisRaw("Vertical");
 
@@ -104,7 +112,6 @@ namespace QFramework.UnityFireSafetyProject
                         if (!previousHitObject.name.Contains("消防标识")&& !previousHitObject.name.Contains("答题"))
                         {
                             GameApp.Instance.mResLoader.LoadSync<GameObject>("showPrecorrect").Instantiate().GetComponentInChildren<Insiantiateobj>().ints(previousHitObject.transform.gameObject);
-                            MianPlayer.showState.Value = false;
                         }
                         else if (previousHitObject.name.Contains("消防标识"))
                         {

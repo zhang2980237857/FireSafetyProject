@@ -30,11 +30,9 @@ public class Insiantiateobj : MonoBehaviour
             isStart = false;
         });
         StartCoroutine(TypeText());
-
     }
     void Update()
     {
-        MouseContoller.isLocked = false;//–Ë”≈ªØ
         ToggleButtonsInteractability(MianPlayer.contrll.Value);
     }
     public void ints(GameObject obj)
@@ -58,10 +56,7 @@ public class Insiantiateobj : MonoBehaviour
     }
     private void OnDestroyShowPanel()
     {
-        MianPlayer.showState.Value = true;
         ShowPanel.gameObject.DestroySelf();
-        MouseContoller.isLocked = true;
-
     }
     private void OnDestroy()
     {

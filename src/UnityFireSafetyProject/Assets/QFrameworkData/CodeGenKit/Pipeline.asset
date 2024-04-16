@@ -15,15 +15,15 @@ MonoBehaviour:
   CurrentTask:
     ShowLog: 0
     Status: 1
-    GameObject: {fileID: 4698126611552364076, guid: dd4731e3716f61340bcbf295094edda7, type: 3}
+    GameObject: {fileID: 1986653554340835103, guid: 413e1f4ad9bb65e45b943c2662dff899, type: 3}
     From: 0
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/Game/ViewContorller
-    ClassName: changjing
+    ClassName: showPrecorrect
     Namespace: QFramework.UnityFireSafetyProject
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic
-      partial class changjing : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class showPrecorrect : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:6acc992d-f6ea-4beb-9a80-904b547f6dbb\r\nusing UnityEngine;\r\n\r\nnamespace
-      QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic partial class changjing\r\n\t{\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:ba77d9e5-0629-41ca-8d78-f29ae42b2cfd\r\nusing UnityEngine;\r\n\r\nnamespace
+      QFramework.UnityFireSafetyProject\r\n{\r\n\tpublic partial class showPrecorrect\r\n\t{\r\n\r\n\t}\r\n}\r\n"
