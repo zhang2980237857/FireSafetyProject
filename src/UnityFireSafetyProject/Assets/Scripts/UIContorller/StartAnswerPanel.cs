@@ -19,6 +19,7 @@ namespace QFramework.UnityFireSafetyProject
 		{
             MianPlayer.contrll.Value = false;
             MouseContoller.isLocked = false;
+            MianPlayer.showState.Value = true;
         }
 		
 		protected override void OnShow()
@@ -34,6 +35,7 @@ namespace QFramework.UnityFireSafetyProject
 		{
             MianPlayer.contrll.Value = true;
             MouseContoller.isLocked = true;
+            MianPlayer.showState.Value = false;
         }
 		
 		protected override void OnClose()

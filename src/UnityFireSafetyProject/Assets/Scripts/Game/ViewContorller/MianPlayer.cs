@@ -105,8 +105,8 @@ namespace QFramework.UnityFireSafetyProject
                         hit.collider.gameObject.GetComponent<HighlightableObject>().ConstantOn(Color.red);
                     }
                     previousHitObject = hit.collider.gameObject;//把当前物体保存起来
-                    //判断场景中是否已经存在展示界面，如果已经存在就不再生成
-                    if (!GameObject.Find("showPrecorrect(Clone)") && Input.GetMouseButtonDown(0))
+                    //判断场景中是否已经存在展示界面，如果已经存在就不再生成(不能同时生成两个UI)
+                    if (!GameObject.Find("showPrecorrect(Clone)") && Input.GetMouseButtonDown(0) && MianPlayer.showState.Value == false)
                     {
                         //实例化物体
                         if (!previousHitObject.name.Contains("消防标识")&& !previousHitObject.name.Contains("答题"))
@@ -115,7 +115,7 @@ namespace QFramework.UnityFireSafetyProject
                         }
                         else if (previousHitObject.name.Contains("消防标识"))
                         {
-                            //对于消防标识类逻辑
+                            //对于消防标识类逻辑(跳转FireSafatyFlagPannel页面在下面这个方法里)
                             previousHitObject.GetComponent<HighlightableObject>().ToFireFlagPannel("这是main面板传递的信息" + transform.name);
                         }else if (previousHitObject.name.Contains("答题"))
                         {

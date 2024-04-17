@@ -29,6 +29,7 @@ namespace QFramework.UnityFireSafetyProject
             MouseContoller.isLocked = false;
             //TODO角色暂停
             MianPlayer.timeSet.Value = 0;
+            MianPlayer.showState.Value = true;
         }
 
         protected override void OnShow()
@@ -49,22 +50,24 @@ namespace QFramework.UnityFireSafetyProject
             if (Input.GetKeyDown(KeyCode.Escape) && !UILoading.isLoading.Value)
             {
                 MianPlayer.contrll.Value = true;
-                MouseContoller.isLocked = true; //锁定鼠标
                 MianPlayer.timeSet.Value = 1;
+                MianPlayer.showState.Value = false;
+                MouseContoller.isLocked = true; //锁定鼠标
                 this.CloseSelf();
             }
         }
         private void OnContiuneClicked()
         {
             MouseContoller.isLocked = true; //锁定鼠标
+            MianPlayer.contrll.Value = true;
             MianPlayer.timeSet.Value = 1;
-            MianPlayer.contrll.Value = false;
+            MianPlayer.showState.Value = false;
             this.CloseSelf();
             print("游戏继续");
         }
         private void OnExitClicked()
         {
-            //退出游戏,切换到初始界面
+            //TODO:退出游戏,切换到初始界面
             print("退出游戏");
         }
         private void OnBkMusicValueChanged(bool IsOpen)

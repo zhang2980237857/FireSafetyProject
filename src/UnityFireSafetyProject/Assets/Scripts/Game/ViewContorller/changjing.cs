@@ -13,7 +13,7 @@ namespace QFramework.UnityFireSafetyProject
         }
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if(Input.GetKeyDown(KeyCode.Escape) && MianPlayer.showState.Value == false)
             {
                 UIKit.OpenPanel<ConfiguationPanel>();
             }
