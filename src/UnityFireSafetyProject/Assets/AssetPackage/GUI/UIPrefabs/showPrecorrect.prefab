@@ -40,11 +40,11 @@ Light:
   m_GameObject: {fileID: 31051303035281684}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 1
+  m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  m_Intensity: 0.1
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1883,7 +1883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Namespace: QFramework.UnityFireSafetyProject
   ScriptName: showPrecorrect
-  ScriptsFolder: Assets/Scripts/Game/ViewContorller
+  ScriptsFolder: Assets\Scripts\UIContorller
   GeneratePrefab: 0
   PrefabFolder: Assets/AssetPackage/GUI/UIPrefabs
   ArchitectureFullTypeName: 

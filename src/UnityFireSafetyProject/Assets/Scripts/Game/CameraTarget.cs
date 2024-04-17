@@ -15,8 +15,8 @@ public class CameraTarget : MonoBehaviour
     public float xSpeed = 250.0f; // 相机水平旋转速度
     public float ySpeed = 250.0f; // 相机垂直旋转速度
     public bool allowYTilt = true; // 是否允许相机垂直旋转
-    public float yMinLimit = -270f; // 限制相机垂直旋转的最小角度
-    public float yMaxLimit = 270f; // 限制相机垂直旋转的最大角度
+    public float yMinLimit = -360f; // 限制相机垂直旋转的最小角度
+    public float yMaxLimit = 360f; // 限制相机垂直旋转的最大角度
     private float currentX = 0.0f; // 当前相机水平旋转角度
     private float currentY = 0.0f; // 当前相机垂直旋转角度
     private float targetX = 0f; // 目标水平旋转角度
