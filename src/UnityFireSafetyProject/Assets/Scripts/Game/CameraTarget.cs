@@ -9,8 +9,8 @@ public class CameraTarget : MonoBehaviour
     public Transform target; //相机要跟随的目标物体
     public Vector3 pivotOffset = Vector3.zero; // 相机围绕目标的偏移量
     public float distance = 0f; // 相机与目标的距离
-    public float minDistance = 2f; // 相机与目标的最小距离
-    public float maxDistance = 15f; // 相机与目标的最大距离
+    private float minDistance = 1.4f; // 相机与目标的最小距离
+    private float maxDistance = 15f; // 相机与目标的最大距离
     public float zoomSpeed = 100f; // 缩放速度
     public float xSpeed = 250.0f; // 相机水平旋转速度
     public float ySpeed = 250.0f; // 相机垂直旋转速度
@@ -66,10 +66,11 @@ public class CameraTarget : MonoBehaviour
         targetY  = Mathf.Clamp(targetY, yMinLimit, yMaxLimit);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0); 
         distance = targetDistance;
-        distance = Mathf.Clamp(distance, 3.2f, 6f);
-        Vector3 position = rotation * new Vector3(0.0f, weightCenterHeight, -distance) + target.position + pivotOffset;
+        distance = Mathf.Clamp(distance, minDistance,maxDistance);
+        Vector3 position = rotation * new Vector3(0.0f, weightCenterHeight-0.5f, -distance) + target.position + pivotOffset;
         transform.rotation = rotation;
         transform.position = position;
+        Debug.Log("当前距离"+distance);
     }
 
 }

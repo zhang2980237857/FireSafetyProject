@@ -39,11 +39,16 @@ public class Insiantiateobj : MonoBehaviour
     {
         //将获取的脚本进行实例化
         obj1 = Instantiate(obj,Model);
-        obj1.GetComponent<Rigidbody>().useGravity = false;
+        if (obj1.GetComponent<Rigidbody>()!=null)
+        {
+            obj1.GetComponent<Rigidbody>().useGravity = false;
+        }
+        
         Vector3 pos = new Vector3(0, 0, 0);
         obj1.transform.localPosition = pos;
+
+        Debug.Log("实例化的模型名称"+obj1.transform.localPosition);
         namesplit = SplitTextByLength(obj1.name,1);
-        
     }
     void LateUpdate()
     {
